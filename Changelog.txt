@@ -1,0 +1,188 @@
+v7.2.0
+_____________________________________________________
+- Fixed CRC Check from previous update
+- Fixed InfoBefore and EULA
+  > Before it was possible to change the texts
+- It is now possible to use both TXT and RTF files for InfoBefore and EULA
+- Updated russian localization
+- Updated french localization
+- Redone compressor settings
+  > It now uses COMPRESSOR_GUI to change the settings
+  > Thanks to Cesar82
+- CompactMode now have it's own information page
+  > It is located near about button
+  > This opens a new window which will show you informations about the game or your repack
+- If WebsiteButtonText is empty, a custom message 'Website' will be used instead
+- Added Czech language to installer
+  > "a few" messages still have to be translated
+- Added PrecompX (thanks to BLACKFIRE69)
+- Added a new checkbox "Limit RAM and CPU usage" to both modes
+  > If this checkbox is checked, RAM and CPU usage will be limited during installation
+- Added a small bitmap to SelectDirPage to Free/Need space labels
+- It is now possible to use special characters like ™ for your application
+  > Before you got strange hieroglyphs
+- Fixed time remaining check if [Record2] is present in records.ini
+- Fixed misplaced buttons and texts on 125%+ desktop scale (hopefully for ever now)
+- Fixed a bunch of small errors, misplacings and code duplicates
+- Fixed a bunch of this annoying error messages on compiling
+
+v7.1.7
+_____________________________________________________
+- Fixed "OK" button on components page (CompactMode) with higher desktop resolutions
+  > Hopefully this will be the last one
+- Fixed "Background" button on FinishedPage with special settings
+- Added a new [Executable#] section to Settings.ini
+  > There will be set executables for shortcuts
+- Reworked creating icons for your application
+  > It is now possible to set/create more then one icon
+  > Theoretical you can create an infinite number of shortcuts
+- Updated all languages
+- Some script cleanup, now be less unneccessary doubled codes and trash
+- Updated Help file
+- Hotfix: Fixed hash check if more then from 1 disc/iso is installed
+  > Before the file was extracted on hash page, and if you were installing from more
+    then one disc/iso and changed the disc/iso, Installer couldn't extract the file 
+    because Setup.exe was not in {src} folder anymore, so you had to remount the disc/iso
+    and click "Retry" to start the hash check. This is now fixed.
+- Hotfix: Fixed broken FinishPage if CRC checkbox was checked (NormalMode)
+- Hotfix 2: Fixed shortcut creation
+- Hotfix 3: Fixed misplaced cancel button if vcl style was used (NormalMode)
+
+v7.1.6
+_____________________________________________________
+- Fixed diskspan file search window
+  > Clsinit function was missing and is now back
+- Fixed positioning of CRC Checkbox on CompactMode
+- If no Setup.ico is present, compiler will use default icon now instead of giving a error message while compile
+- Added PMT support for MPZ
+- Changed Time Remaining label
+  > Before it showed "Infinity" if you used more then one record inside records.ini.
+    If you use more then one record, Time Remaining will not show up anymore.
+
+v7.1.5
+_____________________________________________________
+- Changed BPK decompressor (thanks to Masquerade)
+- Added PMT
+  > Atm only for RAZOR Archiver
+- Added Oodle8 support
+- Fixed doubled installation display size (thanks to Cesar82)
+- Removed DLZ
+
+v7.1.4a
+_____________________________________________________
+- Fixed installation size in CompactMode if components were used and all components were unchecked (Checked=0)
+
+v7.1.4
+_____________________________________________________
+- Updated some compressors
+- Fixed Redist CB if Compactmode and Components is used
+- Added translations for 'Click to select components...' message in compact mode
+
+
+v7.1.3
+_____________________________________________________
+- Reworked Redist page
+- Active language will be added to INIFile now
+- Added file checks for components (thanks to Cesar82)
+
+
+v7.1.2
+_____________________________________________________
+- Added Redist installation to CompactMode
+- Added ISHash library to CompactMode (now really!)
+- Updated ISHash library (thanks to peterf1999)
+- Added components
+  > With this you can unpack language archives or other archives
+  > Set them in Settings.ini
+  > You don't need to add them to Records.ini
+- Reworked Components (thanks to Cesar82)
+- Updated 7z to v19.0.0.0
+- Changes 'Size=' key in Settings.ini
+  > It is now possible to write size as follow:
+    b,B,k,K,kb,KB,Kb,m,M,mb,MB,Mb,g,G,gb,GB,Gb,t,T,tb,TB,Tb,p,P,pb,PB,Pb
+- Fixed slideshow
+  > Before it always show the first picture twice.
+- Fixed not correct size in Windows Control Panel
+- Fixed some other bugs
+- Fixed component progress on ProgressBar
+- Fixed ScrollBar on LicensePage and InfoBeforePage if you use cjstyle skin
+- Added Skin support to LanguageBox (thanks to Cesar82)
+- Added Skin support to Uninstall progress
+- Changed appearance in Components page
+- Added compact mode to installer
+  > This is an option for minimalistic setup with only one page
+  > In CompactMode you can only use SFV and MD5 files for CRC check
+    I will implement ISHash library later in CompactMode
+- Fixed LogButton in CRC Check page
+- Fixed other bug if CRC check is disabled
+- Added checkbox for "Create Uninstaller"
+  > If checkbox is checked, Uninstall files will be created
+  > If checkbox is not checked, no uninstall files will be created
+- Added [INISettings] to Settings.ini
+  > With this you can change INI settings after installation is done
+- Fixed french translation for CRC check page (forgot some spaces)
+- Added RazorTools
+  > ZSTD Precompressor
+  > FIFA 19 Cas Decryption Tool + Precompressor
+  > Project CARS 2 Bff Decryption Tool
+  > LZX Precompressor
+- Fixed DPI calculation if text scaling in Windows Display Settings was greater than 100% (thanks to Cesar82)
+
+
+v7.1.1b
+_____________________________________________________
+- Fixed Music Button
+- Fixed Hardware detection (thanks to peterf1999 for the help)
+- Fixed Finish Button if CRC Check is not used
+- Website Button is now not visible on Installing Page
+- Added Background ON/OFF button on Installing Page
+  > With this button you can toggle install background on/off
+- Changed background color of License and Info before memo to a bright color
+  > On dark themes you couldn't read text properly before
+- Made Installer window a bit bigger for better reading
+- Added missing dll to ztool
+- Added ability to change Hardware label colors in [SystemRequirement] section
+- Fixed some other bugs
+
+
+v7.1.1a
+_____________________________________________________
+- Removed ISUtils.dll
+- Added green indicator if Hardware match the requirement
+- Updated BASS Audio Library to v2.4.14.0
+- Added some help to Settings.ini
+
+
+v7.1.1
+_____________________________________________________
+- Updated some compressors
+- Added option to make records.ini internal
+- Rebuild file handling for compressors
+- Updated file structure
+- Removed old code
+- Removed Compiler.exe for ISEE
+  > You have to use IS (u) now
+- Fixed ProgressBar flickering
+  > It had something to do with % (TLabel)
+  > % is now (StaticText)
+- Added Time Remaining and Time Elapsed
+  > Time Remaining is broken at the moment
+- Removed ProgressBarLabelColor
+  > It is not working with (StaticText)
+- Increased Setup Window size
+- Added ShowLanguageBox= option
+- Moved CRC Check CB to DirPage
+- Fixed CPU requirement calculation
+- Rounded DirectX version number (from xy,z to xy)
+- It is now possible to use RGB Color instead of BGR
+- Fixed Music and Website Buttons if one of them are disabled
+- Fixed compile error if AFR "019" is enabled
+- Fixed error if not using certain options
+- Added ISHash library (thanks to peterf1999)
+  > Removed QuickSFV
+  > Valid file types: md5, sha1, sha256, sha512
+- Overhauled SelectDirPage a bit
+- Removed string "x 1 (Running)" from GPU label
+- Added pause button on installer
+  > With this you can pause the installation
+- Fixed PercentLabel for diskspan archives
