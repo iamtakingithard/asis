@@ -1,0 +1,176 @@
+[Settings]
+Name=							| Name of your application
+Size=  							| Example: 6.6 Gb
+							  b,B,k,K,kb,KB,Kb,m,M,mb,MB,Mb,g,G,gb,GB,Gb,t,T,tb,TB,Tb,p,P,pb,PB or Pb
+Creator=						| Creator name (will be visible on "About" page)
+64BitOnly=0/1						| 0 run Setup on x86/x64 systems, 1 run setup only on x64 systems
+UWPGame=0/1						| Use (1) or not use (0) UWP game registration
+ShowLanguageBox=0/1					| Show language selection before setup starts
+DefaultInstallDir=					| Set the default install directory to which the application should be installed
+							  It is possible to use constants such as {sd}, {pf}, ...
+							  F.e. DefaultInstallDir={sd}\Games - This will set default path to {systemdrive}\Games\{app}
+UnInstallFolder=					| Define folder for uninstall files
+							  Uninstall files will always be created in {app} folder
+CompactMode=0/1						| Use CompactMode=1 for minimalistic interface (no images, compact in size)
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Executable#]						| Replace # with a number (1, 2, 3...)
+ShortcutName=						| The name of your shortcut on desktop and startmenu
+ExePath=						| Path to exe file (it is always read from {app}\)
+ExeParam=						| Parameter of your shortcut (if neccessary)
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[INISettings]
+Enable=0/1						| In NormalMode there will be a input field visible on SelectDirPage
+							  In CompactMode the value from Value= will be used to write in INI
+INIFile=						| Select the INI file to edit after installation
+							  Example: {app}\inifile.ini, {localappdata}\YourApplication\inifile.ini
+Section=						| Section inside INI file which contains the key to edit
+Key=							| Key inside Section to edit
+Value= 							| Is only needed in CompactMode!
+							  If you want to use the systems user name use {username}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[ComponentsSettings]
+Enable=							| Enable (1) or disable (0) the use of components
+						          You are able to choose what components will be installed
+FlatPageMode=						| Enable (1) or disable (0) the use of flat page mode
+							  Flat page means that there will be no "box effect" in which
+							  the checkboxes for components are
+ShowComponentSize=					| Show component sizes (1) or not (0)
+Component#.Name=					| The name of the component
+							  You can also use cm:EN for languages
+Component#.File=					| The archive linked for the component
+							  Example: English.arc for English language files (cm:EN)
+Component#.Size=					| The size for the component (# xx)
+Component#.Level=					| 0/1. Sets the level for this component (0=secundary, 1=primary)
+Component#.Exclusive=					| 0/1. Sets the exclusivity for this component (dependend level)
+Component#.Checked=					| Checked (1) or not checked (0) by default
+Component#.Enabled=					| Enabled (1) or not enabled (0)
+							  This is helpful if the component should not be editable (f.e. main files)
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Installer]
+WelcomeBackground=					| Image (Bitmap) which will be shown on the first page
+FinishBackground=					| Image (Bitmap) which will be shown on the last page
+BannerBackground=					| Image (Bitmap) which will be shown on the top of all other pages
+							  NOTE: This images will only be used on NormalMode.
+							  CompactMode will not use this images
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Background]
+Enable=							| Enable (1) or disable (0) of use of slideshow during installation process
+InstallBGDuration=					| Set how long each image will be visible in miliseconds (1 second = 1000 miliseconds)
+InstallBGAnimation=					| Enable (1) or disable (0) transition effects between images
+BGAfterInstall=						| If enabled (1) the slideshow will be kept on FinishPage
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[SystemRequirement]
+Enable=							| Enable (1) or disable (0) the use of system check during setup
+							  This is only used on NormalMode
+Processor=						| Set minimal CPU requirement in MHz (f.e. =3200)
+VideoRAM=						| Set minimal GPU requirement in Mhz (f.e. =2048)
+RAM=							| Set minimal RAM requirement in MB  (f.e. =8192)
+OS=							| Set minimal OS requirement (Win7 = 611, Win8.1 = 621, Win10 = 1000)
+DirectX=						| Set minimal DirectX requirement (9, 10, 11, 12)
+HWSectionLabelColor=					| Set the font color of the hardware (left side) with $RRGGBB ($808080)
+HWOkLabelColor=						| Set the font color of the detected hardware (rigt side) with $RRGGBB ($357EC7)
+HWNotOkLabelColor=					| Set the font color of the detected hardware (rigt side) if they not matches with minreq with $RRGGBB ($ff0000)
+HWGoodLabelColor=					| Set the font color if your hardware matches the minimum requirement with $RRGGBB ($36ff00)
+HWPartiallyGoodLabelColor=				| Set the font color if your hardware partially matches the minimum requirement with $RRGGBB ($ff8400)
+HWNotGoodLabelColor=					| Set the font color if your hardware NOT matches the minimum requirement with $RRGGBB ($ff0000)
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Text]
+WelcomeLabel1Top=					| Set the top position of heading label in pixel on WelcomePage (f.e. 235)
+WelcomeLabel2Top=					| Set the top position of main label in pixel on WelcomePage (f.e. 295)
+FinishLabel1Top=					| Set the top position of heading label in pixel on FinishedPage (f.e. 235)
+FinishLabel2Top=					| Set the top position of main label in pixel on FinishedPage (f.e. 295)
+WelcomeLabel1FontSize=					| Set the font size of heading label on WelcomePage (f.e. 14)
+WelcomeLabel2FontSize=					| Set the font size of main label on WelcomePage (f.e. 10)
+FinishLabel1FontSize=					| Set the font size of heading label on FinishedPage (f.e. 14)
+FinishLabel2FontSize=					| Set the font size of main label on FinishedPage (f.e. 10)
+Font=							| Set the font to use (f.e. Calibri)
+							  To use a custom font, copy the font file to Setup folder and name it "Font.ttf"
+FontColor=						| Set the font color of all above font settings with $RRGGBB ($f7991b)
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[CRCCheck]
+Enable=							| Enable (1) or disable (0) the use of a hash check after installation is finished
+CRCFileName=						| Set the hash file to use for the hash check
+							  It is possible to use md5, sha1, sha256 or sha512 files
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Website]
+Enable=							| Enable (1) or disable (0) to make a website button visible
+WebsiteButtonText=					| Text to display on the website button
+							  If it's empty, then a custom message 'Website' will be used in different languages
+URL=							| URL to open when click the website button
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Splash]
+Enable=							| Enable (1) or disable (0) to use a splash image which will be shown on installer start
+SplashFile=						| Filename of the splash image (.PNG)
+SplashFadeIn=						| Fade in time in miliseconds
+SplashShow=						| Show time in miliseconds
+SplashFadeOut=						| Fade out time in miliseconds
+							  NOTE: If you don't want to use fade in/out just use 0
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Music]
+Enable=							| Enable (1) or disable (0) to use music during installation
+MusicFile=						| Filename of the music file (.mp3)
+MusicVolume=						| Volume from 0 - 10 (default is 7).
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[License]
+Enable=							| Enable (1) or disable (0) to use License/EULA file (RTF)
+							  Setup\EULA\ - English.rtf
+									French.rtf
+									German.rtf
+									Italian.rtf
+									Spanish.rtf
+									Polish.rtf
+									Russian.rtf
+									PortugueseBrazil.rtf
+									Czech.rtf
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[InfoBefore]
+Enable=							| Enable (1) or disable (0) to use information file (TXT)
+							  InfoBefore.txt file has to be in Setup folder.
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Skin]
+EnableCjstyles=						| Enable (1) or disable (0) to use Codejock styles
+CjstylesFile=						| Filename of the skin to use (.cjstyles)
+CjstylesParam=						| Parameter of the skin (some skins have parameters)
+EnableVCL=						| Enable (1) or disable (0) to use VCL styles
+VCLFile=						| Filename of the skin to use (.vsf)
+							  ATTENTION: Do not enable both at the same time!
+							  Keep in mind that diskspan has problems with VCL Skins!
+
+/////////////////////////////////////////////////////////////////////////////////
+
+[Redists]
+Enable=							| Enable (1) or disable (0) the use of redists during setup
+
+Redist#=						| Enable (1) or disable (0) Redist#
+Redist#Name=						| Name of the redist
+Redist#Exe32=						| Path and file of x86 redist (f.e. {src}\directx\dxsetup32.exe)
+Redist#Exe64=						| Path and file of x64 redist (f.e. {src}\directx\dxsetup64.exe)
+Redist#Param=						| Parameter

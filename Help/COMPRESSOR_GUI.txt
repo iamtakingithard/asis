@@ -1,0 +1,9 @@
+This is only needed if you don't use DiskSpan_GUI but your own compressor.
+
+Check the compressors you want and click on 'Create DLL'.
+The created Setup.dll will be located in ".\DiskSpan_GUI\Setup_Files" folder.
+If you want to adjust some settings or their names (because your compressor has other names for XTool:xzlib f.e.)
+then you have to edit the INI files located in ".\DiskSpan_GUI\Resources\INSTALLER\ARC" folder.
+
+If you can't click any compressors, hold CTRL key and click on "Default" button.
+This will reset COMPRESSOR_GUI.
