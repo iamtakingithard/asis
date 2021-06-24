@@ -148,7 +148,7 @@ UninstallDisplayIcon={uninstallexe}
 #expr AddToList("OodleRec\Oodle7\*.*", "OodleRec", "Oodle7")  /*         OodleRec Oodle7        */
 #expr AddToList("OodleRec\Oodle8\*.*", "OodleRec", "Oodle8")  /*         OodleRec Oodle8        */
 #expr AddToList("OodleRec\*.*", "OodleRec")                   /*       OodleRec Common x64      */
-#expr AddToList("RazorTools\*.*", "RazorTools")               /*          RazorTools x64          */
+#expr AddToList("RazorTools\*.*", "RazorTools")               /*          RazorTools x64        */
 #expr AddToList("pZLib3\Win64\*.*", "pZLib3", "x64")          /*            pZLib3 x64          */
 #expr AddToList("pZLib3\Win32\*.*", "pZLib3", "x86")          /*            pZLib3 x86          */
 #expr AddToList("XTool\Win64\*.*", "XTool", "x64")            /*            XTool x64           */
@@ -454,7 +454,9 @@ var
     FolderImage, DiskSpaceImage, InfoBeforeImage, {#if UseRedists == "1"}SelectRedistsImage,{#endif} BannerImage, SelectComponentsImage: TBitmapImage;
     WebsiteButton, AboutButton: TNewButton;
     NeedSizeFreeSizeBevel: TBevel;
-    ComponentsPage: TWizardPage;
+    #if UseComponents == "1"
+      ComponentsPage: TWizardPage;
+    #endif
   #else
     RedistCB: TNewCheckBox;
     AboutButtonCM {#if UseInfo == "1"}, InfoButtonCM{#endif}: TNewButton;
@@ -666,7 +668,7 @@ begin
     LangDialogLabel := TNewStaticText.Create(LangDialogForm);
     with LangDialogLabel do
     begin
-      Parent := LangDialogForm;
+      Parent   := LangDialogForm;
       Left     := ScaleX(56);
       Top      := ScaleY(8);
       Width    := ScaleX(233);
@@ -944,6 +946,12 @@ begin
     FreeSpaceLabel.Font.Color := NeedSpaceLabel.Font.Color;
     WizardForm.NextButton.Enabled := True;
   end;
+end;
+
+
+function Scale(Value: Integer): Integer;
+begin
+  Result := Round((ScaleX(Value) + ScaleY(Value)) / 2);
 end;
 
 
@@ -1299,14 +1307,16 @@ end;
       with LogoImage do begin
         Name             := 'LogoImage';
         Parent           := AboutForm;
+        Stretch          := True;
+        AutoSize         := False;
         Left             := ScaleX(5);
         Top              := ScaleY(5);
         Width            := ScaleX(373);
         Height           := ScaleY(149);
-        //Bitmap.AlphaFormat := afDefined;
+        Bitmap.AlphaFormat := afDefined;
         Bitmap.LoadFromFile(ExpandConstant('{tmp}\Logo2.bmp'));
-        ReplaceColor := $0000ff
-        ReplaceWithColor := AboutForm.Color
+        //ReplaceColor := $0000ff
+        //ReplaceWithColor := AboutForm.Color
       end;
       AboutForm.ShowModal()
     finally
@@ -1370,7 +1380,7 @@ end;
         Color      := TColor($d3d3d3);
         Font.Color := clBlack;
         ScrollBars := ssVertical;
-        Text       := WizardForm.InfoBeforeMemo.Text;
+        Text       := Utf8ToAnsi(WizardForm.InfoBeforeMemo.Text);
         ReadOnly   := True;
       end;
 
@@ -3961,7 +3971,7 @@ procedure UltraARC_Process;
 var
   Data: array of TData;
   i, MsgResult: Integer;
-  ComponentFile, SourceDir: String;
+  {#if UseComponents == "1"}ComponentFile, {#endif}SourceDir: String;
   #if AFR_019
     SysInfo: TSystemInfo;
     Threads: Integer;
@@ -4918,6 +4928,9 @@ begin
     WizardForm.ProgressGauge.Enabled := False;
     WizardForm.DiskSpaceLabel.Hide;
     #if UseRedists == "1"
+      RedistCB.Enabled := True;
+      RedistCB.Checked := False;
+    #else
       RedistCB.Enabled := False;
       RedistCB.Checked := False;
     #endif
@@ -4954,9 +4967,10 @@ begin
     WizardForm.CancelButton.Show;
     WizardForm.CancelButton.Parent := WizardForm;
     WizardForm.NextButton.Show;
+    WizardForm.NextButton.Enabled := False;
     WizardForm.NextButton.Parent := WizardForm;
     WizardForm.NextButton.Caption := AppNameOverride(msgButtonInstall);
-    WizardForm.NextButton.Enabled := False;
+    WizardForm.NextButton.Hide;
     WizardForm.ProgressGauge.Show;
     WizardForm.ProgressGauge.Enabled := True;
     WizardForm.DiskSpaceLabel.Hide;
@@ -5042,6 +5056,7 @@ begin
       CRCCancelButton.Show;
       LogButton.Show;
       HashHdrLabel.Show;
+      WizardForm.NextButton.Show;
       WizardForm.NextButton.Enabled := Checked;
       WizardForm.NextButton.Caption := SetupMessage(msgButtonNext);
       WizardForm.Position := poScreenCenter;
