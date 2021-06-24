@@ -22,5 +22,5 @@ jobs:
     - name: Upload the installer as an artifact
       uses: actions/upload-artifact@v2
       with:
-        path: "Output/setup.exe"
+        path: "setup.exe"
         name: wininstaller-inno-asis
